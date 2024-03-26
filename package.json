@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.2",
+    "@testing-library/user-event": "^14.5.2",
+    "milligram": "^1.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "web-vitals": "^3.5.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "scripts": {
+    "build": "npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt",
+    "start": "esbuild ./web/src/index.jsx --bundle --outdir=./web/out && source ./.venv/bin/activate && python main.py"
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "devDependencies": {
+    "css-loader": "^6.10.0",
+    "esbuild": "0.20.2"
+  }
+}
