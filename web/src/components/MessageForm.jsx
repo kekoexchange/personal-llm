@@ -15,19 +15,15 @@ function MessageForm({ onSubmitForm }) {
   }
 
   return (
-    <>
-      <h2>Message</h2>
-
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <label htmlFor="messageField">Message</label>
-          <textarea placeholder="Hi Personal LLM …" onChange={handleChange} id="messageField" value={messageValue}></textarea>
-          <div className="float-right">
-            <input className="button-primary" type="submit" value="Send" />
-          </div>
-        </fieldset>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <fieldset>
+        <label htmlFor="messageField">Message</label>
+        <textarea placeholder="Ask the assistant" onChange={handleChange} id="messageField" value={messageValue} />
+        <div className="float-right">
+          <input className="button-primary" type="submit" value="Send" />
+        </div>
+      </fieldset>
+    </form>
   );
 }
 

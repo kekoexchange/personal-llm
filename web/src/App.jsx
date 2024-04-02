@@ -5,25 +5,51 @@ import MessageForm from "./components/MessageForm";
 function App() {
 
   const [chatHistory, setChatHistory] = useState([]);
+  const [currentChat, setCurrentChat] = useState("");
 
-  const onSubmitForm = (messageValue) => {
-    eel.sendMessage(messageValue)(function(newMessage) {
-      setChatHistory([...chatHistory, newMessage]);
-    })
+  const USER_ROLE = "User";
+  const ASSISTANT_ROLE = "Assistant";
+  const GET_CHAT_POLLING_FREQUENCY_IN_MS = 50;
+
+  const onSubmitForm = (textValue) => {
+    if (currentChat === "") {
+      setChatHistory([...chatHistory, `${USER_ROLE}: ${textValue}`]);
+    } else {
+      setChatHistory([...chatHistory, currentChat, `\n${USER_ROLE}: ${textValue}`]);
+    }
+
+    setCurrentChat(`${ASSISTANT_ROLE}: `);
+
+    eel.send_chat(textValue)(() => {
+      let chatGPTInterval = setInterval(() => {
+        eel.get_chat_response_in_chunks()((chunk) => {
+          if (chunk === null) {
+            clearInterval(chatGPTInterval);
+          } else {
+            setCurrentChat((prevState) => prevState + chunk);
+          }
+        });
+      }, GET_CHAT_POLLING_FREQUENCY_IN_MS);
+    });
+
   };
 
   return (
-    <>
-      <h1>Welcome to Personal LLM!</h1>
+    <div className="container">
 
-      <h2>Chat History</h2>
+      <div className="row">
+        <h1 class="column">Welcome to Personal LLM!</h1>
+      </div>
 
-      <ul>
-        {chatHistory.map((chat) => <li>{chat}</li>)}
-      </ul>
-      
-      <MessageForm onSubmitForm={onSubmitForm} />
-    </>
+      <div className="row history">
+        <pre class="column">
+          {chatHistory.map((chat) => chat + "\n")}
+          {currentChat && (currentChat + "\n") }
+        </pre>
+      </div>
+
+      <MessageForm onSubmitForm={onSubmitForm} className="row" />
+    </div>
   );
 }
 
