@@ -9,7 +9,11 @@ function App() {
 
   const USER_ROLE = "User";
   const ASSISTANT_ROLE = "Assistant";
-  const GET_CHAT_POLLING_FREQUENCY_IN_MS = 50;
+
+  eel.expose(js_app__updateCurrentChat);
+  function js_app__updateCurrentChat(chunk) {
+    setCurrentChat((prevState) => prevState + chunk);
+  }
 
   const onSubmitForm = (textValue) => {
     if (currentChat === "") {
@@ -20,18 +24,7 @@ function App() {
 
     setCurrentChat(`${ASSISTANT_ROLE}: `);
 
-    eel.send_chat(textValue)(() => {
-      let chatGPTInterval = setInterval(() => {
-        eel.get_chat_response_in_chunks()((chunk) => {
-          if (chunk === null) {
-            clearInterval(chatGPTInterval);
-          } else {
-            setCurrentChat((prevState) => prevState + chunk);
-          }
-        });
-      }, GET_CHAT_POLLING_FREQUENCY_IN_MS);
-    });
-
+    eel.py_main__send_chat(textValue)();
   };
 
   return (
