@@ -6,11 +6,10 @@ from langchain_core.prompts import ChatPromptTemplate
 
 eel.init("web")   
 
-chat_buffer = []
 LLM_MODEL = "tinyllama:chat"
   
 @eel.expose     
-def send_chat(chat): 
+def py_main__send_chat(chat): 
     print(f"executing send_chat function with {chat}")
     llm = ChatOllama(model=LLM_MODEL)
     prompt = ChatPromptTemplate.from_messages([
@@ -22,15 +21,6 @@ def send_chat(chat):
     parameters = {"chat": chat}
 
     for chunk in chain.stream(parameters):
-        chat_buffer.append(chunk)
-        
-@eel.expose   
-def get_chat_response_in_chunks():
-
-    chunk = None
-    if chat_buffer:
-        chunk = chat_buffer.pop(0)
-
-    return chunk
+        eel.js_app__updateCurrentChat(chunk)
       
 eel.start("index.html")
