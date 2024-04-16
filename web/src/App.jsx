@@ -27,6 +27,12 @@ function App() {
     eel.py_main__send_chat(textValue)();
   };
 
+  const onClearForm = () => {
+    setCurrentChat("");
+    setChatHistory([]);
+    eel.py_main__clear_chats()();
+  }
+
   return (
     <div className="container">
 
@@ -41,7 +47,7 @@ function App() {
         </pre>
       </div>
 
-      <MessageForm onSubmitForm={onSubmitForm} className="row" />
+      <MessageForm onSubmitForm={onSubmitForm} onClearForm={onClearForm} className="row" />
     </div>
   );
 }
