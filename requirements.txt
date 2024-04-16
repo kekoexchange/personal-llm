@@ -1,2 +1,2 @@
 eel==0.16.0
-langchain==0.1.13
+ollama==0.1.8
