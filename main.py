@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 eel.init("web")   
-LLM_MODEL = "tinyllama:chat"
+LLM_MODEL = "llama3:latest"
 system_prompt = """
     You are a friendly chatbot. 
     You are helpful, kind, honest, and good at writing. 

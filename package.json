@@ -15,7 +15,7 @@
     ]
   },
   "scripts": {
-    "build": "npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt",
+    "build": "ollama pull llama3:latest && npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt",
     "start": "esbuild ./web/src/index.jsx --bundle --outdir=./web/out && source ./.venv/bin/activate && python main.py"
   },
   "parserOptions": {
