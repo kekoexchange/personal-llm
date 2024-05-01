@@ -2,3 +2,18 @@
     white-space: pre-wrap;
     
 }
+
+.header, .footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #a5a5a5;
+    color: #000000;
+    align-items: center;
+    padding: 2rem .5rem;
+    border-bottom: 1px solid #000000;
+    height: 1vh;
+}
+
+.history {
+    min-height: 600px;
+}
