@@ -7,7 +7,7 @@ function App() {
   const [chatHistory, setChatHistory] = useState([
 `******************************
 Welcome to Personal LLM! Ask me anything! Enter in the form below
-******************************`]);
+******************************\n`]);
   const [currentChat, setCurrentChat] = useState("");
 
   const USER_ROLE = "User";
@@ -37,36 +37,19 @@ Welcome to Personal LLM! Ask me anything! Enter in the form below
   }
 
   return (
-    <div className="container">
+    <div className="mg-container">
 
-      <header className="row header">
-        <div className="column">
-          <span>Personal LLM: Your local personal assistant</span>
+      <div className="mg-row">
+
+        <div className="mg-col mg-x12 history">
+          <pre><code>
+            {chatHistory.map((chat) => chat + "\n")}
+            {currentChat && (currentChat + "\n") }
+          </code></pre>
         </div>
-      </header>
-
-      <div className="row history">
-        <pre class="column">
-          {chatHistory.map((chat) => chat + "\n")}
-          {currentChat && (currentChat + "\n") }
-        </pre>
-      </div>
-      
-      <div className="row space-between">
-        &nbsp;
       </div>
 
-      <MessageForm onSubmitForm={onSubmitForm} onClearForm={onClearForm} className="row" />
-
-
-      <footer className="row footer">
-        <div className="column">
-        </div>
-        <div className="column">
-          <em>Brought to you by the folks from <a href="https://kekoexchange.com" _target="_blank">Kekoexchange</a></em>
-        </div>
-        <div className="column">&nbsp;</div>
-      </footer>
+      <MessageForm onSubmitForm={onSubmitForm} onClearForm={onClearForm} className="mg-row message" />
     </div>
   );
 }
