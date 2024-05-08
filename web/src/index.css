@@ -9,3 +9,7 @@ pre code {
 .message{
     height: 225px;
 }
+
+.remove-border {
+    border: none;
+}
