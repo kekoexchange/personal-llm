@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as Constants from "../utils/constants";
 
 function MessageForm({ onSubmitForm, onClearForm }) {
 
@@ -17,17 +18,33 @@ function MessageForm({ onSubmitForm, onClearForm }) {
   const handleClear = (event) => {
     event.preventDefault();
     onClearForm();
-    setMessageValue("");
+    setMessageValue();
+  }
+
+  const onEnterPress = (event) => {
+    if(event.keyCode == 13 && event.shiftKey == false) {
+      event.preventDefault();
+      handleSubmit(event);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <fieldset>
         <label htmlFor="messageField">Message</label>
-        <textarea placeholder="Ask the assistant" onChange={handleChange} id="messageField" value={messageValue} />
-        <div className="float-right">
-          <input className="button-primary" type="button" value="Clear" onClick={handleClear} />&nbsp;
-          <input className="button-primary" type="submit" value="Send" />
+        <div className="mg-row">
+          <div className="mg-col mg-x12">
+            <textarea placeholder="Ask the assistant, press Enter to send" onChange={handleChange} onKeyDown={onEnterPress} id="messageField" value={messageValue} />
+          </div>
+        </div>
+        <div className="mg-row">
+          <div className="mg-col mg-x2">
+            <button className="mg-bg-tertiary remove-border" onClick={handleClear}>Clear</button>
+          </div>
+          <div className="mg-col, mg-x8"></div>
+          <div className="mg-col mg-x2">
+            <button>Send</button>
+          </div>
         </div>
       </fieldset>
     </form>
