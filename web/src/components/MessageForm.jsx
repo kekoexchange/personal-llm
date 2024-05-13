@@ -1,11 +1,10 @@
 import { useState } from "react";
-import * as Constants from "../utils/constants";
 
 function MessageForm({ onSubmitForm, onClearForm }) {
 
   const [messageValue, setMessageValue] = useState("");
 
-  const  handleChange = (event) => {
+  const handleChange = (event) => {
     setMessageValue(event.target.value);
   };
 
@@ -21,7 +20,7 @@ function MessageForm({ onSubmitForm, onClearForm }) {
     setMessageValue();
   }
 
-  const onEnterPress = (event) => {
+  const handleEnterPress = (event) => {
     if(event.keyCode == 13 && event.shiftKey == false) {
       event.preventDefault();
       handleSubmit(event);
@@ -29,17 +28,17 @@ function MessageForm({ onSubmitForm, onClearForm }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="mg-col mg-x12">
       <fieldset>
         <label htmlFor="messageField">Message</label>
         <div className="mg-row">
           <div className="mg-col mg-x12">
-            <textarea placeholder="Ask the assistant, press Enter to send" onChange={handleChange} onKeyDown={onEnterPress} id="messageField" value={messageValue} />
+            <textarea placeholder="Ask the assistant, press Enter to send" onChange={handleChange} onKeyDown={handleEnterPress} id="messageField" value={messageValue} />
           </div>
         </div>
         <div className="mg-row">
           <div className="mg-col mg-x2">
-            <button className="mg-bg-tertiary remove-border" onClick={handleClear}>Clear</button>
+            <button className="mg-bg-tertiary" style={{ border: 'none' }} onClick={handleClear}>Clear</button>
           </div>
           <div className="mg-col, mg-x8"></div>
           <div className="mg-col mg-x2">

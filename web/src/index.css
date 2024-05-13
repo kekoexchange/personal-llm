@@ -1,15 +1,10 @@
-pre code {
+.message-area pre code {
     white-space: pre-wrap;
     min-height: calc(100vh - 225px);
     max-height: 25em;
     overflow: scroll;
 }
 
-
-.message{
+.message-form {
     height: 225px;
-}
-
-.remove-border {
-    border: none;
 }
