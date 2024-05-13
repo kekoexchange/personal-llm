@@ -1,12 +1,12 @@
 import sqlite3
+import constants
 
-DATABASE_NAME = 'data.db'
-
-conn = sqlite3.connect(DATABASE_NAME)
-cursor = conn.cursor()
+conn = None
+cursor = None
 
 def setup():
-    conn = sqlite3.connect(DATABASE_NAME)
+    global conn, cursor
+    conn = sqlite3.connect(constants.DB_NAME)
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -16,28 +16,23 @@ def setup():
             content TEXT
         )
     ''')
-    return conn, cursor
 
-# Function to insert a single message into the "messages" table
 def insert_message(role, content):
     cursor.execute('INSERT INTO messages (role, content) VALUES (?, ?)', (role, content))
     conn.commit()
 
-# Function to retrieve all messages from the "messages" table
-def retrieve_all_messages():
+def get_messages():
     cursor.execute('SELECT role, content FROM messages')
     return cursor.fetchall()
 
-# Function to retrieve a specific message from the "messages" table
-def retrieve_message(message_id):
+def get_message(message_id):
     cursor.execute('SELECT role, content FROM messages WHERE id = ?', (message_id,))
     return cursor.fetchone()
 
-def clear_messages():
+def delete_messages():
     cursor.execute('DELETE FROM messages')
     conn.commit()
 
-# Close the database connection
 def teardown():
     cursor.close()
     conn.close()

@@ -21,11 +21,11 @@ This project's goal is twofold:
 
 And a popup window should display like the following:
 
-![Image Description](images/Personal-LLM-start.png)
+![Image Description](docs/images/Personal-LLM-start.png)
 
 You should be able to type a prompt in the Message box and click "Send" and the chatbot should respond like so:
 
-![Image Description](images/Personal-LLM-end.png)
+![Image Description](docs/images/Personal-LLM-end.png)
 
 ## Why is this project worthwhile?
 

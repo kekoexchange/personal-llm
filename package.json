@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "ollama pull llama3:latest && npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt",
-    "start": "esbuild ./web/src/index.jsx --bundle --outdir=./web/out && source ./.venv/bin/activate && python main.py"
+    "start": "esbuild ./frontend/src/index.jsx --bundle --outdir=./frontend/out && source ./.venv/bin/activate && python backend/main.py"
   },
   "parserOptions": {
     "ecmaVersion": 6,
