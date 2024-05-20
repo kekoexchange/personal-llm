@@ -2,7 +2,7 @@
     white-space: pre-wrap;
     min-height: calc(100vh - 225px);
     max-height: 25em;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .message-form {
