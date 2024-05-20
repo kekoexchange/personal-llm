@@ -1,38 +1,34 @@
-import sqlite3
+from peewee import Model, SqliteDatabase, CharField, AutoField
 import constants
 
-conn = None
-cursor = None
+db = SqliteDatabase(constants.DB_FILE_NAME)
 
+# Database Schema
+class Message(Model):
+    id = AutoField()
+    role = CharField()
+    content = CharField()
+
+    class Meta:
+        database = db
+
+# Database Operationss
 def setup():
-    global conn, cursor
-    conn = sqlite3.connect(constants.DB_NAME)
-    cursor = conn.cursor()
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS messages (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            role TEXT,
-            content TEXT
-        )
-    ''')
+    db.connect()
+    db.create_tables([Message])
 
 def insert_message(role, content):
-    cursor.execute('INSERT INTO messages (role, content) VALUES (?, ?)', (role, content))
-    conn.commit()
+    message = Message.create(role=role, content=content)
 
 def get_messages():
-    cursor.execute('SELECT role, content FROM messages')
-    return cursor.fetchall()
+    messages = Message.select()
+    return [(message.role, message.content) for message in messages]
 
 def get_message(message_id):
-    cursor.execute('SELECT role, content FROM messages WHERE id = ?', (message_id,))
-    return cursor.fetchone()
+    message = Message.get_or_none(id=message_id)
+    if message:
+        return (message.role, message.content)
+    return None
 
 def delete_messages():
-    cursor.execute('DELETE FROM messages')
-    conn.commit()
-
-def teardown():
-    cursor.close()
-    conn.close()
+    Message.delete().execute()
