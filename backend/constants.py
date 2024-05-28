@@ -7,5 +7,8 @@ LLM_SYSTEM_PROMPT = """
     You keep it short unless instructed otherwise.
     """
 
+USER_ROLE = "user"
+ASSISTANT_ROLE = "assistant"
+
 FRONTEND_FOLDER = "frontend"
 FRONTEND_INDEX_PAGE = "index.html"

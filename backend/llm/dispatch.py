@@ -1,7 +1,7 @@
 import ollama
 import constants
 
-def send_chat(messages):
+def send_message(messages):
     all_messages = [{
         'role': 'system',
         'content': constants.LLM_SYSTEM_PROMPT
@@ -9,9 +9,9 @@ def send_chat(messages):
     
     all_messages.extend([
         {
-            'role': role,
-            'content': content
-        } for role, content in messages
+            'role': message.role,
+            'content': message.content
+        } for message in messages
     ])
 
     stream = ollama.chat(
