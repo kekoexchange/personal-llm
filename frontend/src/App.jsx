@@ -15,13 +15,13 @@ function App() {
       setChatHistory([...chatHistory, currentChat, `\n${Constants.USER_ROLE_NAME}: ${textValue}`]);
     }
     setCurrentChat(`${Constants.ASSISTANT_ROLE_NAME}: `);
-    eel.py_main__send_chat(textValue)();
+    eel.py_main__send_message(textValue)();
   };
 
   const onClearForm = () => {
     setCurrentChat("");
     setChatHistory([Constants.INTRO_MESSAGE]);
-    eel.py_main__clear_chats()();
+    eel.py_main__clear_messages()();
   };
 
   eel.expose(js_app__updateCurrentChat);
