@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function MessageForm({ onSubmitForm, onClearForm }) {
+function MessageForm({ onSubmitForm, onDeleteChat, onNewChat}) {
 
   const [messageValue, setMessageValue] = useState("");
 
@@ -14,9 +14,15 @@ function MessageForm({ onSubmitForm, onClearForm }) {
     setMessageValue("");
   }
 
-  const handleClear = (event) => {
+  const handleDeleteChat = (event) => {
     event.preventDefault();
-    onClearForm();
+    onDeleteChat();
+    setMessageValue();
+  }
+
+  const handleNewChat = (event) => {
+    event.preventDefault();
+    onNewChat();
     setMessageValue();
   }
 
@@ -38,9 +44,12 @@ function MessageForm({ onSubmitForm, onClearForm }) {
         </div>
         <div className="mg-row">
           <div className="mg-col mg-x2">
-            <button className="mg-bg-tertiary" style={{ border: 'none' }} onClick={handleClear}>Clear</button>
+            <button className="mg-bg-tertiary" style={{ border: 'none' }} onClick={handleDeleteChat}>Delete Chat</button>
           </div>
-          <div className="mg-col, mg-x8"></div>
+          <div className="mg-col mg-x2">
+            <button className="mg-bg-tertiary" style={{ border: 'none' }} onClick={handleNewChat}>New Chat</button>
+          </div>
+          <div className="mg-col, mg-x6"></div>
           <div className="mg-col mg-x2">
             <button>Send</button>
           </div>

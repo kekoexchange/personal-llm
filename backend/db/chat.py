@@ -22,6 +22,13 @@ class ChatObj():
         self.id = chat.id
         self.name = chat.name
         self.created_at = chat.created_at
+    
+    def toFrontEnd(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'created_at': self.created_at.isoformat()
+        }
 
 # Database Operations
 def create(name):
@@ -40,7 +47,7 @@ def list():
     chats = Chat.select()
     return [ChatObj(chat) for chat in chats]
 
-def delete():
-    Chat.delete().execute()
+def delete(chat_id):
+    Chat.delete().where(Chat.id == chat_id).execute()
 
     
