@@ -1,10 +1,22 @@
 .message-area pre code {
     white-space: pre-wrap;
-    min-height: calc(100vh - 225px);
+    min-height: calc(100vh - 250px);
     max-height: 25em;
     overflow: auto;
 }
 
 .message-form {
     height: 225px;
+}
+
+.chat-list {
+    margin-top: 20px
+}
+
+.chat-list li {
+    cursor: pointer;
+}
+
+.chat-list .selected {
+    font-weight: bold;
 }

@@ -27,9 +27,18 @@ class MessageObj():
         self.created_at = message.created_at
         self.chat_obj = chat.ChatObj(chat.get(message.chat_id))
 
+    def toFrontEnd(self):
+        return {
+            'id': self.id,
+            'role': self.role,
+            'content': self.content,
+            'created_at': self.created_at.isoformat(),
+            'chat': self.chat_obj.toFrontEnd()
+        }
+
 # Database Operations
-def create(role, content, chat):
-    message = Message.create(role=role, content=content, chat_id=chat.id)
+def create(role, content, chat_id):
+    message = Message.create(role=role, content=content, chat_id=chat_id)
     return MessageObj(message)
 
 def get(message_id):
@@ -44,12 +53,12 @@ def list():
     messages = Message.select()
     return [MessageObj(message) for message in messages]
 
-def list_by_chat(chat):
-    messages = Message.select().where(Message.chat_id == chat.id)
+def list_by_chat(chat_id):
+    messages = Message.select().where(Message.chat_id == chat_id)
     return [MessageObj(message) for message in messages]
 
 def delete():
     Message.delete().execute()
 
-def delete_by_chat(chat):
-    Message.delete().where(Message.chat_id == chat.id).execute()
+def delete_by_chat(chat_id):
+    Message.delete().where(Message.chat_id == chat_id).execute()

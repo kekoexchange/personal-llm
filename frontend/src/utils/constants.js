@@ -1,8 +1,5 @@
-export const INTRO_MESSAGE = 
-`******************************
-Welcome to Personal LLM! Ask me anything! Enter in the form below
-******************************\n`;
+export const USER_ROLE_NAME = "user";
+export const ASSISTANT_ROLE_NAME = "assistant";
 
-export const USER_ROLE_NAME = "User";
-export const ASSISTANT_ROLE_NAME = "Assistant";
-
+export const NEW_CHAT_ID = 0;
+export const NEW_CHAT_NAME_NUM_CHARS = 20;
