@@ -4,6 +4,7 @@ import MessageForm from "./components/MessageForm";
 import MessageArea from "./components/MessageArea";
 import ChatList from "./components/ChatList";
 import * as Constants from "./utils/constants";
+import * as Api from "./api/functions";
 
 function App() {
   const [messageHistory, setMessageHistory] = useState([]);
@@ -12,11 +13,17 @@ function App() {
   const [allChats, setAllChats] = useState([]);
 
   useEffect(() => {
-    eel.py_main__get_chats()((result) => {
+    Api.pyGetChats((result) => {
       setAllChats(result);
       onChatNew();
-    })
+    });
+
+    // passing dynamic resources to the api.functions.js files
+    // to be exposed by python-eel to the backend
+    Api.eelResources.jsUpdateCurrentMessage = { setCurrentMessage };
+
   }, []);
+  
 
   const onChatNew = () => { 
     setMessageHistory([])
@@ -25,7 +32,7 @@ function App() {
   }
 
   const onChatSelect = (chatID) => {
-    eel.py_main__get_messages_by_chat(chatID)((result) => {
+    Api.pyGetMessagesByChat(chatID, (result) => {
       setMessageHistory(result.map((message) => `${message.role}: ${message.content}`));
       setCurrentMessage("")
     });
@@ -41,27 +48,22 @@ function App() {
     setCurrentMessage(`${Constants.ASSISTANT_ROLE_NAME}: `);
 
     if (currentChatID === Constants.NEW_CHAT_ID) {
-      eel.py_main__create_chat(textValue.slice(0, Constants.NEW_CHAT_NAME_NUM_CHARS))((newChat) => {
+      Api.pyCreateChat(textValue.slice(0, Constants.NEW_CHAT_NAME_NUM_CHARS), (newChat) => {
         setAllChats([...allChats, newChat]);
         setCurrentChatID(newChat.id);
-        eel.py_main__send_message(textValue, newChat.id)();
+        Api.pySendMessage(textValue, newChat.id);
       });
     } else {
-      eel.py_main__send_message(textValue, currentChatID)();
+      Api.pySendMessage(textValue, currentChatID);
     }
     
   };
 
   const onChatDelete = () => {
     setAllChats((prevState) => prevState.filter((chat) => chat.id !== currentChatID));
-    eel.py_main__delete_chat(currentChatID)(() => {
+    Api.pyDeleteChat(currentChatID, () => {
       onChatNew();
     });
-  }
-
-  eel.expose(js_app__updateCurrentMessage);
-  function js_app__updateCurrentMessage(chunk) {
-    setCurrentMessage((prevState) => prevState + chunk);
   }
 
   return (
