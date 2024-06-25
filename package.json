@@ -15,9 +15,9 @@
     ]
   },
   "scripts": {
-    "build": "ollama pull llama3:latest && ollama pull nomic-embed-text:latest && npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt && python download_punkt.py",
-    "start": "esbuild ./frontend/src/index.jsx --bundle --outdir=./frontend/out && chroma run --host localhost --port 8000 --path ./chromadb source & ./.venv/bin/activate && python backend/main.py",
-    "import": "source ./.venv/bin/activate && chroma run --host localhost --port 8000 --path ./chromadb & python backend/rag/import.py"
+    "build": "ollama pull llama3:latest && ollama pull nomic-embed-text:latest && npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt && python download_punkt.py && mkdir -p ./storage/app && chroma run --host localhost --port 8100 --path ./storage/vector",
+    "start": "esbuild ./frontend/src/index.jsx --bundle --outdir=./frontend/out &&  source ./.venv/bin/activate && python backend/main.py",
+    "import": "source ./.venv/bin/activate && python backend/rag/import.py"
   },
   "parserOptions": {
     "ecmaVersion": 6,

@@ -1,4 +1,4 @@
-DB_FILE_NAME = 'data.db'
+DB_FILE_PATH = './storage/app/data.db'
 LLM_MODEL = "llama3:latest"
 LLM_SYSTEM_PROMPT = """
     You are a friendly chatbot. 

@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG)
 def main():
     collectionname = "buildragwithpython"
 
-    chroma = chromadb.HttpClient(host="localhost", port=8000)
+    chroma = chromadb.HttpClient(host="localhost", port=8100)
     logging.info(chroma.list_collections())
     if any(collection.name == collectionname for collection in chroma.list_collections()):
         logging.info('deleting collection')
