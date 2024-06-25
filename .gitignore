@@ -5,4 +5,5 @@ out/
 data.db
 *.pyc
 build/
-chromadb/
+storage/
+chroma.log
