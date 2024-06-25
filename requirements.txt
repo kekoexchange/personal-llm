@@ -1,3 +1,6 @@
 eel==0.16.0
 ollama==0.1.8
 peewee==3.17.5
+chromadb==0.5.3
+mattsollamatools==0.0.25
+nltk==3.8.1
