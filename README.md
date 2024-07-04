@@ -14,7 +14,7 @@ Unlock the power of Language Models in your own hands! Personal LLM is a revolut
 - Ollama
 - LLM
 - ORM [Peewee](https://docs.peewee-orm.com/en/latest/)
-- RDBMS ([Sqlite3])(https://sqlite.org/)
+- RDBMS [Sqlite3](https://sqlite.org/)
 - [Python-Eel](https://github.com/python-eel/Eel)
 
 ## Demo
