@@ -18,7 +18,7 @@ Unlock the power of Language Models in your own hands! Personal LLM is a revolut
 - [Python-Eel](https://github.com/python-eel/Eel)
 
 ## Demo
-[A demo of Personal-LLM's features can be found here.](https://vimeo.com/977028159)
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/BwRgVGhxm70/0.jpg)](http://www.youtube.com/watch?v=BwRgVGhxm70 "Video Title")
 
 ## Technical System Design
 [A video of the technical system design of Personal-LLM can be found here.](https://vimeo.com/977036847)
