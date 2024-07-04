@@ -1,7 +1,7 @@
 # Personal LLM - a desktop ChatGPT clone that runs 100% local off of the cloud
 
 ## Author
-Kay Ashaolu [LinkedIn](https://www.linkedin.com/in/kayashaolu/)
+[Kay Ashaolu](https://www.linkedin.com/in/kayashaolu/)
 
 ## Description
 Unlock the power of Language Models in your own hands! Personal LLM is a revolutionary desktop application that brings the capabilities of Large Language Models (LLMs) to your very own computer. With Personal LLM, you can now harness the intelligence and creativity of AI-powered language processing, without relying on internet connectivity or costly subscriptions. Simply download, install, and start leveraging the limitless potential of LLMs for free, right from your desktop
