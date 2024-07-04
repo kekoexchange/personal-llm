@@ -18,15 +18,10 @@ Unlock the power of Language Models in your own hands! Personal LLM is a revolut
 - [Python-Eel](https://github.com/python-eel/Eel)
 
 ## Demo
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/BwRgVGhxm70/0.jpg)](http://www.youtube.com/watch?v=BwRgVGhxm70 "Video Title")
+[![Personal-LLM Demo Video](http://img.youtube.com/vi/BwRgVGhxm70/0.jpg)](http://www.youtube.com/watch?v=BwRgVGhxm70 "Personal-LLM Demo Video")
 
 ## Technical System Design
-[A video of the technical system design of Personal-LLM can be found here.](https://vimeo.com/977036847)
-
-This project's goal is twofold:
-
-1. To enable anyone to be able to use LLMs to benefit their own day-to-day life and
-2. To foster growth in the [Kekoexchange](https://kekoexchange.com) community through contribution to this project. Kekoexchange brings people looking to break into tech with software engineers looking for leadership opportunities together to contribute to open-source software so that we all can achieve our career growth, learn from each other, and give back to the public technical landscape that is open-source.
+[![Personal-LLM System Design Video](http://img.youtube.com/vi/MgdypIh9wrA/0.jpg)](http://www.youtube.com/watch?v=MgdypIh9wrA "Personal-LLM System Design Video")
 
 ## Setup Instructions
 1. Please download and install the following dependencies
