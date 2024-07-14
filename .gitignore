@@ -7,3 +7,7 @@ data.db
 build/
 storage/
 chroma.log
+dist/
+download_punkt.py
+*.spec
+pyvenv.cfg

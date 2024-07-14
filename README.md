@@ -30,6 +30,5 @@ Unlock the power of Language Models in your own hands! Personal LLM is a revolut
   * [Ollama](https://ollama.com/)
     * Ollama is a LLM model backend that lets you download and access LLMs locally and use it in your applications. NOTE: Ensure Ollama is running before doing the below
 2. Clone this repository
-3. Run `npm run build` to build the project
+3. Run `npm run start ` to r the project
     * As of this writing, we are using the [llama3 LLM](https://llama.meta.com/llama3/) from Meta, which is about 4.7 GB. The first run of this will take some time as Ollama downloads the llama3 LLM.
-4. Run `npm run start` to run the project

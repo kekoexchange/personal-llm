@@ -6,7 +6,6 @@ from llm import dispatch
 
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
 
 # Functions defined in the front end that can be called from the backend
 
