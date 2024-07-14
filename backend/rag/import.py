@@ -8,7 +8,6 @@ import sys
 import logging
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
 
 def main():
     collectionname = "buildragwithpython"
