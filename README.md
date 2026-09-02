@@ -32,4 +32,9 @@ Unlock the power of Language Models in your own hands! Personal LLM is a revolut
     * Ollama is a LLM model backend that lets you download and access LLMs locally and use it in your applications.
 2. Clone this repository
 3. Run `npm run start` to run the project (`npm run setup` and `npm run build` are the individual steps)
-    * As of this writing, we are using the [llama3 LLM](https://llama.meta.com/llama3/) from Meta, which is about 4.7 GB. The first run of this will take some time as Ollama downloads the llama3 LLM.
+
+## Configuration
+Optional environment variables:
+- `PERSONAL_LLM_MODEL` — Ollama model to pull and chat with (default `gemma3:270m`)
+- `PERSONAL_LLM_DB` — path to the SQLite file (default `storage/app/data.db` under the repo root; the folder is created if missing)
+    * The default model is [Gemma 3 270M](https://ollama.com/library/gemma3) from Google, about 290 MB; the first run downloads it. Set `PERSONAL_LLM_MODEL` to use a different Ollama model.
