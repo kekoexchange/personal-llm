@@ -23,17 +23,27 @@ def py_send_message(message_content, chat_id):
 
     message.create(constants.USER_ROLE, message_content, current_chat.id)
     saved_messages = message.list_by_chat(current_chat.id)
-    stream = dispatch.send_message(saved_messages)
 
     response_message = ""
-    for chunk in stream:
-        # update the frdontend with the llm reponse in chunks
-        js_update_current_message(chunk['message']['content']) 
+    try:
+        stream = dispatch.send_message(saved_messages)
+        for chunk in stream:
+            content = chunk['message']['content']
 
-        # build the full response to save in the database
-        response_message += chunk['message']['content']
-    
-    message.create(constants.ASSISTANT_ROLE, response_message,  current_chat.id)
+            # update the frontend with the llm response in chunks
+            js_update_current_message(content)
+
+            # build the full response to save in the database
+            response_message += content
+    except Exception as error:
+        # Without this the exception dies inside eel, the UI sits on an empty
+        # "assistant:" line forever, and nothing says why. Show the failure in
+        # the chat and skip saving a (partial or empty) assistant message.
+        logger.exception("LLM request failed for chat %s", current_chat.id)
+        js_update_current_message(f"[error] {error}")
+        return
+
+    message.create(constants.ASSISTANT_ROLE, response_message, current_chat.id)
 
 @eel.expose
 def py_delete_chat(chat_id):
