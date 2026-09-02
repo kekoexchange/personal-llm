@@ -5,8 +5,23 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "==> Python environment"
+# The app and pytest (requirements-dev.txt) need Python 3.11+; check the
+# interpreter that will actually be used (an existing .venv, else python3)
+# before installing anything, so an old Python fails here with a plain message
+# instead of deep inside pip.
+PYTHON=python3
+[ -x .venv/bin/python ] && PYTHON=.venv/bin/python
+"$PYTHON" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)' || {
+  echo "Python 3.11 or newer is required, but $PYTHON is $("$PYTHON" --version 2>&1)." >&2
+  echo "Install a newer Python (https://www.python.org/downloads/), delete .venv if it exists, and rerun npm run setup." >&2
+  exit 1
+}
 [ -d .venv ] || python3 -m venv .venv
 ./.venv/bin/pip install -q -r requirements.txt
+./.venv/bin/pip install -q -r requirements-dev.txt
+
+echo "==> Node packages"
+npm install
 
 echo "==> Storage"
 mkdir -p storage/app

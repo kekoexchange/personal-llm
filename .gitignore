@@ -13,3 +13,4 @@ download_punkt.py
 pyvenv.cfg
 # scaffold mentor wiki (local learner ledger)
 scaffold-wiki/
+.pytest_cache/

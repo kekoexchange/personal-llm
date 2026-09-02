@@ -13,13 +13,24 @@
   "scripts": {
     "setup": "bash scripts/setup.sh",
     "build": "esbuild ./frontend/src/index.jsx --bundle --outdir=./frontend/out",
-    "start": "npm install && npm run setup && npm run build && ./.venv/bin/python backend/main.py"
+    "start": "npm run setup && npm run build && ./.venv/bin/python backend/main.py",
+    "test": "npm run test:frontend; frontend=$?; npm run test:backend && exit $frontend",
+    "test:backend": "./.venv/bin/python -m pytest",
+    "test:frontend": "vitest run"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "devDependencies": {
-    "esbuild": "^0.28.2"
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "esbuild": "^0.28.2",
+    "jsdom": "30.0.1",
+    "vitest": "4.1.11"
   }
 }
