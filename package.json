@@ -1,12 +1,8 @@
 {
   "dependencies": {
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.2",
-    "@testing-library/user-event": "^14.5.2",
     "mgplus": "^1.2.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "web-vitals": "^3.5.2"
+    "react-dom": "^18.2.0"
   },
   "eslintConfig": {
     "extends": [
@@ -15,14 +11,14 @@
     ]
   },
   "scripts": {
-    "start": "npm install && python3.11 -m venv ./.venv &&  source ./.venv/bin/activate && pip install -r requirements.txt && python backend/main.py"
+    "build": "esbuild ./frontend/src/index.jsx --bundle --outdir=./frontend/out",
+    "start": "npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt && mkdir -p ./storage/app && npm run build && python backend/main.py"
   },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "devDependencies": {
-    "css-loader": "^6.10.0",
     "esbuild": "0.20.2"
   }
 }

@@ -11,3 +11,5 @@ dist/
 download_punkt.py
 *.spec
 pyvenv.cfg
+# scaffold mentor wiki (local learner ledger)
+scaffold-wiki/
