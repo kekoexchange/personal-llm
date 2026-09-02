@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "mgplus": "^1.2.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "mgplus": "^1.4.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "eslintConfig": {
     "extends": [
@@ -11,14 +11,15 @@
     ]
   },
   "scripts": {
+    "setup": "bash scripts/setup.sh",
     "build": "esbuild ./frontend/src/index.jsx --bundle --outdir=./frontend/out",
-    "start": "npm install && python3.11 -m venv ./.venv && source ./.venv/bin/activate && pip install -r requirements.txt && mkdir -p ./storage/app && npm run build && python backend/main.py"
+    "start": "npm install && npm run setup && npm run build && ./.venv/bin/python backend/main.py"
   },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "devDependencies": {
-    "esbuild": "0.20.2"
+    "esbuild": "^0.28.2"
   }
 }

@@ -25,10 +25,11 @@ Unlock the power of Language Models in your own hands! Personal LLM is a revolut
 
 ## Setup Instructions
 1. Please download and install the following dependencies
-  * [Python 3.11](https://www.python.org/downloads/release/python-3117/) 
+  * [Python 3](https://www.python.org/downloads/) (3.11 or newer)
+  * [Node.js](https://nodejs.org/)
   * [Google Chrome](https://www.google.com/chrome/)
-  * [Ollama](https://ollama.com/)
-    * Ollama is a LLM model backend that lets you download and access LLMs locally and use it in your applications. NOTE: Ensure Ollama is running before doing the below
+  * [Ollama](https://ollama.com/) — optional to pre-install: `npm run start` installs it if it's missing (Linux via the official script, macOS via Homebrew) and starts it if it isn't running.
+    * Ollama is a LLM model backend that lets you download and access LLMs locally and use it in your applications.
 2. Clone this repository
-3. Run `npm run start ` to r the project
+3. Run `npm run start` to run the project (`npm run setup` and `npm run build` are the individual steps)
     * As of this writing, we are using the [llama3 LLM](https://llama.meta.com/llama3/) from Meta, which is about 4.7 GB. The first run of this will take some time as Ollama downloads the llama3 LLM.
